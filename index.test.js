@@ -1,10 +1,15 @@
 const {sequelize} = require("./db"); //import from db.js file
+const {Video,Comments,CommentSection}=require ("./index")
+
+
 //const { Video } = require('./Video');
-const { Comments } = require('./Comments');
+//const { Comments } = require('./Comments');
 //const { CommentSection } = require('./CommentSection');
-//const {Video, Comments} = require("./index") // pull them from index, where we make our association
+ //const {Video, Comments} = require("./index") // pull them from index, where we make our association
 //const {Comments, CommentSection}=require ("./index")
-const {Video,CommentSection}=require ("./index")
+//const {Video, CommentSection}=require ("./index")
+
+
 
 
 describe('Video Database', () => { 
@@ -55,40 +60,40 @@ describe('Video Database', () => {
             })
 
     
-	// test('Videos can have many comments', async () => {
-    //     const javaTutorial = await Video.create({title: 'Java Tutorial',views:2000})
-	// 	const comments1 = await Comments.create({description: 'Nice tutorial',likes:true});
-	// 	const comments2 = await Comments.create({description: 'Its so easy',likes:false});
-	// 	const comments3 = await Comments.create({description: 'Not so clear',likes:true});
+	test('Videos can have many comments', async () => {
+        const javaTutorial = await Video.create({title: 'Java Tutorial',views:2000})
+		const comments1 = await Comments.create({description: 'Nice tutorial',likes:true});
+		const comments2 = await Comments.create({description: 'Its so easy',likes:false});
+		const comments3 = await Comments.create({description: 'Not so clear',likes:true});
 		
 		
-	// 	await javaTutorial.addComments(comments1);
-	// 	await javaTutorial.addComments(comments2);
-	// 	await javaTutorial.addComments(comments3);
+		await javaTutorial.addComments(comments1);
+		await javaTutorial.addComments(comments2);
+		await javaTutorial.addComments(comments3);
 	
-	// 	const comments = await javaTutorial.getComments();
-	// 	expect(comments.length).toBe(3)
-	// 	expect(comments[0] instanceof Comments).toBeTruthy
-    //     expect(comments[0].description).toBe('Nice tutorial');
-    // })
+		const comments = await javaTutorial.getComments();
+		expect(comments.length).toBe(3)
+		expect(comments[0] instanceof Comments).toBeTruthy
+        expect(comments[0].description).toBe('Nice tutorial');
+    })
 
-    // test('CommentSection can have many comments', async () => {
-    //     const commentSection = await CommentSection.create({numberComments: 200,disabled:false})
-	// 	const comments1 = await Comments.create({description: 'Nice tutorial',likes:true});
-	// 	const comments2 = await Comments.create({description: 'Its so easy',likes:false});
-	// 	const comments3 = await Comments.create({description: 'Not so clear',likes:true});
+    test('CommentSection can have many comments', async () => {
+        const commentSection = await CommentSection.create({numberComments: 200,disabled:false})
+		const comments1 = await Comments.create({description: 'Nice tutorial',likes:true});
+		const comments2 = await Comments.create({description: 'Its so easy',likes:false});
+		const comments3 = await Comments.create({description: 'Not so clear',likes:true});
 		
 		
-	// 	await commentSection.addComments(comments1);
-	// 	await commentSection.addComments(comments2);
-	// 	await commentSection.addComments(comments3);
+		await commentSection.addComments(comments1);
+		await commentSection.addComments(comments2);
+		await commentSection.addComments(comments3);
 	
-	// 	const comments = await commentSection.getComments();
-	// 	expect(comments.length).toBe(3)
-	// 	expect(comments[0] instanceof Comments).toBeTruthy
-    //  expect(comments[0].description).toBe('Nice tutorial');
+		const comments = await commentSection.getComments();
+		expect(comments.length).toBe(3)
+		expect(comments[0] instanceof Comments).toBeTruthy
+        expect(comments[0].description).toBe('Nice tutorial');
     
-    // })
+    })
 
     test('Video can have one comment section', async () => {
         const youtubeVideo = await Video.create({title:'JavaScript and SQl',views:500})

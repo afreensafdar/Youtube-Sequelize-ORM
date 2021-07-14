@@ -8,15 +8,17 @@ const { CommentSection } = require('./CommentSection');
 //Connecting Comments and Video tables
 Comments.belongsTo(Video, {foreignKey: 'video_id'}) //adds a foreign key on restaurant table, for the menu that belongs to
 Video.hasMany(Comments,{as: 'comments', foreignKey: 'video_id'}) 
-module.exports = { Video, Comments};
+//module.exports={Comments,Video}
 
 //Connecting CommentSection and Comments tables
 Comments.belongsTo(CommentSection)
 CommentSection.hasMany(Comments)
-module.exports = { CommentSection, Comments};
+//module.exports={Comments,CommentSection}
 
 //Connecting CommentSection and Video tables
 CommentSection.belongsTo(Video)
 Video.hasOne(CommentSection)
-module.exports = { Video, CommentSection};
+//module.exports={Video,CommentSection}
+
+module.exports = { Video,Comments, CommentSection};
 
